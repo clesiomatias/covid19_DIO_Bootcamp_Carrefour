@@ -22,6 +22,31 @@ function Panel({ updateAt, onChange, data, country, getCoviData }) {
       </ItemStyled>
     </MenuItem>
   );
+  const textCovid19 = `País: ${country}`;
+  const copyInfo = () => {
+    navigator.clipboard.writeText(textCovid19);
+  };
+  const shareInfo = () => {
+    navigator.share({
+      title: `Dados do Covid19 = ${country}`,
+      text: textCovid19,
+      url: "https://covid19dio-cm.netlify.app/",
+    });
+  };
+  const renderShareButton = (
+    <div>
+      <Button variant="contained" color="primary" onClick={shareInfo}>
+        Compartilhar
+      </Button>
+    </div>
+  );
+  const renderCopyButton = (
+    <div>
+      <Button variant="container" color="primary" onClick={copyInfo}>
+        Copiar
+      </Button>
+    </div>
+  );
   return (
     <Card>
       <CardPanelContentStyled>
@@ -41,6 +66,7 @@ function Panel({ updateAt, onChange, data, country, getCoviData }) {
             </Select>
           </div>
         </div>
+        {navigatorShare ? renderShareButton : renderCopyButton}
       </CardPanelContentStyled>
     </Card>
   );
