@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Grid, Skeleton } from "../../../components";
 import Card from "./Card";
@@ -13,7 +13,35 @@ function Board({ data }) {
       <Grid item xs={12} md={3}>
         <Card value={getValue(cases)} label="Total de casos" color="#5d78ff" />
       </Grid>
+      <Grid item xs={12} md={3}>
+        <Card
+          value={getValue(todayDeaths)}
+          label="Óbitos hoje"
+          color="#ffee05"
+        />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Card
+          value={getValue(todayCases)}
+          label="Casos de hoje"
+          color="#040405"
+        />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Card
+          value={getValue(deaths)}
+          label="Total de mortos"
+          color="#9c0404"
+        />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Card
+          value={getValue(recovered)}
+          label="Total de recuperados"
+          color="#038b0f"
+        />
+      </Grid>
     </Grid>
   );
 }
-export default Board;
+export default memo(Board);
